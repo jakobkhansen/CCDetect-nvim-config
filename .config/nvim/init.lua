@@ -42,6 +42,7 @@ require("lazy").setup({
     },
 
     -- "LSP, languages and tools",
+    "neovim/nvim-lspconfig",
     {
         "j-hui/fidget.nvim",
         config = function()
