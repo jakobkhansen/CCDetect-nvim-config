@@ -15,7 +15,6 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup({
-    -- "Buffers",
     {
         "akinsho/bufferline.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
@@ -43,7 +42,6 @@ require("lazy").setup({
     },
 
     -- "LSP, languages and tools",
-    "neovim/nvim-lspconfig",
     {
         "j-hui/fidget.nvim",
         config = function()
@@ -55,7 +53,7 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter-textobjects",
 })
 
--- Load rest of config
+-- Load some plugins
 
 require("tokyonight").setup()
 vimscript("colorscheme tokyonight", false)
@@ -69,12 +67,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local command = vim.api.nvim_command
 
--- Sets filetype to ccdetect
-autocmd("BufRead,BufNewFile", {
-    pattern = { "*.ccdetect" },
-    command = "setlocal ft=ccdetect",
-})
-
+-- CCDetect-LSP setup
 local JAVA_HOME = os.getenv("JAVA_HOME")
 
 local function get_java_executable()
@@ -83,7 +76,7 @@ local function get_java_executable()
     return sysname:match("Windows") and executable .. ".exe" or executable
 end
 
-local jar = "/home/gradle/src/app/build/libs/app-all.jar"
+local jar = vim.env.HOME .. "/CCDetect-lsp/app/build/libs/app-all.jar"
 
 local cmd = { get_java_executable(), "-Xmx8G", "-jar", jar }
 
@@ -97,6 +90,7 @@ end
 local cap = vim.lsp.protocol.make_client_capabilities()
 cap.workspace.didChangeWatchedFiles.dynamicRegistration = true
 
+-- CCDetect-LSP config - EDIT THIS TO CHANGE CCDetect-LSP options
 local function start_ccdetect()
     vim.lsp.start({
         cmd = cmd,
@@ -106,6 +100,7 @@ local function start_ccdetect()
             ["window/showDocument"] = on_show_document,
         },
         capabilities = cap,
+        -- EDIT THESE OPTIONS
         init_options = {
             language = "java",
             fragment_query = "(method_declaration) @method",
@@ -117,8 +112,10 @@ local function start_ccdetect()
     })
 end
 
+-- SET FILETYPE HERE AS WELL TO LAUNCH CCDETECT-LSP on a given filetyp
 autocmd("FileType", { pattern = "java", callback = start_ccdetect })
 
+-- Hotkeys
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
