@@ -54,6 +54,9 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter-textobjects",
 })
 
+-- Options
+vim.opt.number = true
+
 -- Load some plugins
 
 require("tokyonight").setup()
