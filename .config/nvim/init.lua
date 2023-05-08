@@ -123,7 +123,7 @@ autocmd("FileType", { pattern = "java", callback = start_ccdetect })
 local keymap = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 
-keymap("n", "<A-t>", "<CMD>Telescope find_files<CR>", opts)
-keymap("n", "<A-f>", "<CMD>Neotree toggle<CR>", opts)
-keymap("n", "<A-c>", "<CMD>Telescope diagnostics<CR>", opts)
-keymap("n", "<A-a>", "<CMD>lua vim.lsp.buf.code_action()<CR>", opts)
+keymap("n", "<C-t>", "<CMD>Telescope find_files<CR>", opts)
+keymap("n", "<C-f>", "<CMD>Neotree toggle<CR>", opts)
+keymap("n", "<C-c>", "<CMD>Telescope diagnostics<CR>", opts)
+keymap("n", "<C-a>", "<CMD>lua vim.lsp.buf.code_action()<CR>", opts)
