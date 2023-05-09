@@ -12,7 +12,7 @@ in the Docker container), cd into its directory and launch Neovim with `nvim` co
 Once a file with the chosen file-type is opened in Neovim (`.java` file by default),
 CCDetect-LSP should start analyzing the project, and a notification spinner should show up
 in the bottom right of the screen. Once it says completed, open up the diagnostic view
-(`Alt-c`), to show all code-clones located.
+(`Ctrl+c`), to show all code-clones located.
 
 ## Hotkeys
 
@@ -21,8 +21,8 @@ Some Vim knowledge is probably required to efficiently use Neovim with CCDetect-
 Some hotkeys are already setup for specific clone-detection features:
 
 ```txt
-Alt-t = Fuzzy-find files
-Alt-f = File-tree
-Alt-c = Code clone view (diagnostics view)
-Alt-a = Code action (navigate to clone match)
+Ctrl+t = Fuzzy-find files
+Ctrl+f = File-tree
+Ctrl+c = Code clone view (diagnostics view)
+Ctrl+a = Code action (navigate to clone match)
 ```
