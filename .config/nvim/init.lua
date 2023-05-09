@@ -107,7 +107,7 @@ local function start_ccdetect()
         -- EDIT THESE OPTIONS
         init_options = {
             language = "java",
-            fragment_query = "(method_declaration) @method",
+            fragment_query = "(method_declaration) @method (constructor_declaration) @constructor",
             clone_token_threshold = 100,
             dynamic_detection = true,
             update_on_save = true,
