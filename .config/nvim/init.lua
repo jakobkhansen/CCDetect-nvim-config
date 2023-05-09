@@ -106,17 +106,26 @@ local function start_ccdetect()
         capabilities = cap,
         -- EDIT THESE OPTIONS
         init_options = {
+            -- Set to file-extension of language, installed languages: java, py, go, js, rs, c
             language = "java",
+            -- Set fragment query, here, see CCDetect-LSP README for examples for other languages
             fragment_query = "(method_declaration) @method (constructor_declaration) @constructor",
+            -- Token threshold for how a long clone needs to be
             clone_token_threshold = 100,
+            -- Use incremental algorithm for subsequent analysis after initial.
+            -- If false, runs SACA algorithm each time
             dynamic_detection = true,
+            -- Update on save only, recommended as saving on each keystroke is buggy
             update_on_save = true,
+            -- Evaluation mode: Runs both SACA and incremental algorithms and logs time
             evaluate = false,
         },
     })
 end
 
--- SET FILETYPE HERE AS WELL TO LAUNCH CCDETECT-LSP on a given filetyp
+-- SET FILETYPE HERE AS WELL TO LAUNCH CCDETECT-LSP on a given filetype
+-- Examples: java, python, go, javascript, rust, c
+-- Try `:set ft?` to see if file-type != file-extension which is possible
 autocmd("FileType", { pattern = "java", callback = start_ccdetect })
 
 -- Hotkeys
